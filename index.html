@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pemesanan Ramen</title>
+<style>
+    body {
+        font-family: monospace;
+    }
+    .container {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    .card {
+        background-color: #ffffff;
+        border: 1px solid #eee;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        border-radius: 5px;
+        padding: 20px;
+        margin-bottom: 20px;
+        text-align: left;
+    }
+    .output {
+        margin-top: 20px;
+        padding: 15px;
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <h3>Struk Pemesanan Mie Ramen - Febriyan 13</h3>
+        <form id="formPemesanan">
+        <div>
+            <label for="nama">Nama</label>
+            <input type="text" id="nama" name="nama" placeholder="Masukan Nama" required>
+        </div>
+        <br>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Masukan Email" required>
+        </div>
+        <br>
+        <div>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Masukan Password" required>
+        </div>
+        <br>
+
+        <p>Jenis Mie Ramen:</p>
+        <div>
+            <input type="radio" id="kuah" name="jenis" value="Kuah" required>
+            <label for="kuah">Kuah</label>
+        </div>
+        <div>
+            <input type="radio" id="goreng" name="jenis" value="Goreng">
+            <label for="goreng">Goreng</label>
+        </div>
+        <br>
+
+        <div>
+            <label for="jumlah_pesananan">Jumlah Pesanan:</label>
+            <input type="number" id="jumlah_pesananan" name="jumlah_pesananan" placeholder="1 - 10" min="1" max="10" required>
+        </div>
+        <br>
+
+        <div>
+            <label for="tanggal">Tanggal Reservasi</label>
+            <input type="date" id="tanggal" name="tanggal" required>
+        </div>
+        <br>
+
+        <div>
+            <input type="checkbox" id="akomodasi" name="akomodasi" value="A">
+            <label for="akomodasi">Akomodasi Tambahan</label>
+        </div>
+        <br>
+
+        <div>
+            <label for="bukti_pembayaran">Bukti Pembayaran</label>
+            <input type="file" id="bukti_pembayaran" name="bukti_pembayaran" required>
+        </div>
+        <br>
+
+    <button type="button" onclick="tampil()">Kirim Pemesanan</button>
+        </form>
+        <hr>
+        <div id="output"></div>
+    </div>
+</div>
+
+<script>
+    const output = document.querySelector('#output');
+
+    function tampil(){
+        const nama = document.getElementById('nama').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const jenisEl = document.querySelector('input[name="jenis"]:checked');
+        const jenis = jenisEl ? jenisEl.value : 'tidak dipilih';
+        const jumlah = document.getElementById('jumlah_pesananan').value || 'kosong';
+        const tanggal = document.getElementById('tanggal').value || 'kosong';
+        const akomodasi = document.getElementById('akomodasi').checked ? 'Ya' : 'Tidak';
+        const bukti = document.getElementById('bukti_pembayaran').files[0];
+        const buktiName = bukti ? bukti.name : 'Tidak ada file';
+
+        output.innerHTML = `
+            <div class="output">
+                <strong>Struk Pesanan</strong>
+                <p>Nama: ${nama}</p>
+                <p>Email: ${email}</p>
+                <p>Jenis Mie: ${jenis}</p>
+                <p>Jumlah: ${jumlah}</p>
+                <p>Tanggal: ${tanggal}</p>
+                <p>Akomodasi Tambahan: ${akomodasi}</p>
+                <p>Bukti Pembayaran: ${buktiName}</p>
+            </div>
+        `;
+    }
+</script>
+
+
+</body>
+</html>
