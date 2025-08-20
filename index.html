@@ -68,6 +68,12 @@
         <br>
 
         <div>
+            <label for="jumlah_pesananan">Jumlah Minuman:</label>
+            <input type="number" id="jumlah_minuman" name="jumlah_minuman" placeholder="1 - 10" min="1" max="10" required>
+        </div>
+        <br>
+
+        <div>
             <label for="tanggal">Tanggal Reservasi</label>
             <input type="date" id="tanggal" name="tanggal" required>
         </div>
@@ -100,7 +106,8 @@
         const email = document.getElementById('email').value.trim();
         const jenisEl = document.querySelector('input[name="jenis"]:checked');
         const jenis = jenisEl ? jenisEl.value : 'tidak dipilih';
-        const jumlah = document.getElementById('jumlah_pesananan').value || 'kosong';
+        const jumlahPesanan = document.getElementById('jumlah_pesananan').value || 'kosong';
+        const jumlahMinuman = document.getElementById('jumlah_minuman').value || 'kosong';
         const tanggal = document.getElementById('tanggal').value || 'kosong';
         const akomodasi = document.getElementById('akomodasi').checked ? 'Ya' : 'Tidak';
         const bukti = document.getElementById('bukti_pembayaran').files[0];
@@ -112,7 +119,8 @@
                 <p>Nama: ${nama}</p>
                 <p>Email: ${email}</p>
                 <p>Jenis Mie: ${jenis}</p>
-                <p>Jumlah: ${jumlah}</p>
+                <p>Jumlah Pesanan: ${jumlahPesanan}</p>
+                <p>Jumlah Minuman: ${jumlahMinuman}</p>
                 <p>Tanggal: ${tanggal}</p>
                 <p>Akomodasi Tambahan: ${akomodasi}</p>
                 <p>Bukti Pembayaran: ${buktiName}</p>
